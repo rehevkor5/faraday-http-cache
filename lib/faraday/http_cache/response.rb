@@ -74,10 +74,10 @@ module Faraday
 
       # Internal: Gets the response age in seconds.
       #
-      # Returns the 'Age' header if present, or subtracts the response 'date'
-      # from the current time.
+      # Subtracts the response 'date' from the time at which this object was created.
+      # The 'Age' header is not getting updated properly, so we avoid using it.
       def age
-        (headers['Age'] || (@now - date)).to_i
+        (@now - date).to_i
       end
 
       # Internal: Calculates the 'Time to live' left on the Response.
